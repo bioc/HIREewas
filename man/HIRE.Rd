@@ -47,7 +47,7 @@ HIRE(Ometh, X, num_celltype, tol=10^(-5), num_iter=1000, alpha=0.01)
 }
 
 \author{
-	xxx
+	Xiangyu Luo
 }
 
 %% ~Make other sections like Warning with \section{Warning }{....} ~
