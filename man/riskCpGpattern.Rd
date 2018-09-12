@@ -33,7 +33,7 @@ riskCpGpattern(pval_matr, main_title = "Detected association pattern", hc_row_in
 % HIRE manuscript
 %}
 \author{
-xxx
+ Xiangyu Luo
 }
 %\note{
 %%  ~~further notes~~
