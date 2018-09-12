@@ -8,6 +8,20 @@
 #include <time.h>
 #include "HIRE.h"
 
+
+extern SEXP EmEwasRcallC(SEXP);
+
+static const R_CallMethodDef CallEntries[] = {
+    {"EmEwasRcallC",          (DL_FUNC) &EmEwasRcallC,          1},
+    {NULL, NULL, 0}
+};
+
+void R_init_HIREewas(DllInfo *dll)
+{
+    R_registerRoutines(dll, NULL, CallEntries, NULL, NULL);
+    R_useDynamicSymbols(dll, FALSE);
+}
+
 SEXP getListElement (SEXP list, char *str) {
 
 	SEXP elmt = R_NilValue, names = getAttrib(list, R_NamesSymbol);
