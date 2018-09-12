@@ -38,15 +38,15 @@ The user's guide provides step-by-step instructions for the *HIREewas* R package
 We believe that, by helping biology researchers understand in which cell types the CpG sites are affected by a disease using 
 *HIREewas*, HIRE can ultimately facilitate the development of epigenetic therapies by targeting the specifically affected cell types.
 
-##Installation
+## Installation
 ```
 devtools:install_github("XiangyuLuo/HIREewas")
 ```
 
-##Instructions
+## Instructions
 Please refer to the HIREewas vignette or the function manual for details.
 
-##References
+## References
 [1] Eugene Andres Houseman, William P Accomando, Devin C Koestler, Brock C Christensen,
 Carmen J Marsit, Heather H Nelson, John K Wiencke, and Karl T Kelsey. DNA methylation
 arrays as surrogate measures of cell mixture distribution. BMC Bioinformatics, 13(1):86,
