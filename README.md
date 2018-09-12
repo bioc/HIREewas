@@ -1,7 +1,7 @@
-# A Brief Summary of HIREewas
+## A Brief Summary of HIREewas
 HIRE is short for HIgh REsolution, as it can detect cell-type-specific CpG sites in epigenome wide association studies (EWAS), which is a function existing EWAS approaches cannot accomplish. HIREewas is the accompanied R package to implement the HIRE model.
 
-#Introduction
+## Introduction
 In epigenome-wide association studies (EWAS), as samples are measured at the bulk level rather than at the single-cell level, 
 the obtained methylome for each sample shows the signals aggregated from distinct cell types 
 [1-3]. The cellular heterogeneity leads to two main challenges for analyzing EWAS data.
@@ -17,7 +17,7 @@ Nevertheless, such identification is challenging because we can only observe the
 
 However, to the best of our knowledge, no existing statistical method for EWAS can detect cell-type-specific associations despite 
 the active research on accounting for cell-type heterogeneity. The existing approaches can be categorized into two schools 
-[7]: ``reference-based'' and ``reference-free'' methods. As the method names indicate, 
+[7]: "reference-based" and "reference-free" methods. As the method names indicate, 
 the reference-based methods [1,8] require the reference methylation profiles for 
 each cell type to be known a priori, while the reference-free methods do not 
 depend on any known methylation reference by employing matrix decomposition techniques 
@@ -38,15 +38,15 @@ The user's guide provides step-by-step instructions for the *HIREewas* R package
 We believe that, by helping biology researchers understand in which cell types the CpG sites are affected by a disease using 
 *HIREewas*, HIRE can ultimately facilitate the development of epigenetic therapies by targeting the specifically affected cell types.
 
-#Installation
+##Installation
 ```
 devtools:install_github("XiangyuLuo/HIREewas")
 ```
 
-#Instructions
+##Instructions
 Please refer to the HIREewas vignette or the function manual for details.
 
-#References
+##References
 [1] Eugene Andres Houseman, William P Accomando, Devin C Koestler, Brock C Christensen,
 Carmen J Marsit, Heather H Nelson, John K Wiencke, and Karl T Kelsey. DNA methylation
 arrays as surrogate measures of cell mixture distribution. BMC Bioinformatics, 13(1):86,
