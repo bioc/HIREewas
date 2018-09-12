@@ -25,8 +25,8 @@ depend on any known methylation reference by employing matrix decomposition tech
 [4,6,10,11]. 
 
 Although all of the existing methods aim to address the cellular heterogeneity problem in EWAS and claim whether 
-a CpG site is associated with phenotypes at the *aggregated level*, none of them can identify the risk-CpG sites for 
-each *individual cell type*, thus missing the opportunity to obtain finer-grained results in EWAS.
+a CpG site is associated with phenotypes at the **aggregated level**, none of them can identify the risk-CpG sites for 
+each **individual cell type**, thus missing the opportunity to obtain finer-grained results in EWAS.
 
 We propose a hierarchical model HIRE [12] to identify the association in EWAS at an unprecedented 
 HIgh REsolution: detecting whether a CpG site has any associations with the phenotypes in each cell type. 
@@ -34,9 +34,9 @@ HIRE not only substantially improves the power of association detection at the a
 existing methods but also enables the detection of risk-CpG sites for individual cell types. HIRE is applicable to EWAS 
 with binary phenotypes, continuous phenotypes, or both. 
 
-The user's guide provides step-by-step instructions for the *HIREewas* R package. 
+The user's guide provides step-by-step instructions for the **HIREewas** R package. 
 We believe that, by helping biology researchers understand in which cell types the CpG sites are affected by a disease using 
-*HIREewas*, HIRE can ultimately facilitate the development of epigenetic therapies by targeting the specifically affected cell types.
+**HIREewas**, HIRE can ultimately facilitate the development of epigenetic therapies by targeting the specifically affected cell types.
 
 ## Installation
 ```
@@ -51,33 +51,44 @@ Please refer to the HIREewas vignette or the function manual for details.
 Carmen J Marsit, Heather H Nelson, John K Wiencke, and Karl T Kelsey. DNA methylation
 arrays as surrogate measures of cell mixture distribution. BMC Bioinformatics, 13(1):86,
 2012.
+
 [2] Yun Liu, Martin J Aryee, Leonid Padyukov, M Daniele Fallin, Espen Hesselberg, Arni
 Runarsson, Lovisa Reinius, Nathalie Acevedo, Margaret Taub, Marcus Ronninger, et al.
 Epigenome-wide association data implicate DNA methylation as an intermediary of genetic
 risk in rheumatoid arthritis. Nature Biotechnology, 31(2):142-147, 2013.
+
 [3] Andrew E Jaffe and Rafael A Irizarry. Accounting for cellular heterogeneity is critical in
 epigenome-wide association studies. Genome Biology, 15(2):R31, 2014.
+
 [4] James Zou, Christoph Lippert, David Heckerman, Martin Aryee, and Jennifer Listgarten.
 Epigenome-wide association studies without the need for cell-type composition. Nature
 Methods, 11(3):309-311, 2014.
+
 [5] Kevin McGregor, Sasha Bernatsky, Ines Colmegna, Marie Hudson, Tomi Pastinen, Aurelie
 Labbe, and Celia MT Greenwood. An evaluation of methods correcting for cell-type
 heterogeneity in DNA methylation studies. Genome Biology, 17(1):84, 2016.
+
 [6] Elior Rahmani, Noah Zaitlen, Yael Baran, Celeste Eng, Donglei Hu, Joshua Galanter, Sam
 Oh, Esteban G Burchard, Eleazar Eskin, James Zou, et al. Sparse PCA corrects for cell
 type heterogeneity in epigenome-wide association studies. Nature Methods, 13(5):443-445,
 2016.
+
 [7] Andrew E Teschendorff and Caroline L Relton. Statistical and integrative system-level
 analysis of DNA methylation data. Nature Reviews Genetics, 2017.
+
 [8] William P Accomando, John K Wiencke, E Andres Houseman, Heather H Nelson, and
 Karl T Kelsey. Quantitative reconstruction of leukocyte subsets using DNA methylation.
 Genome Biology, 15(3):R50, 2014.
+
 [9] Eugene Andres Houseman, Molly L Kile, David C Christiani, Tan A Ince, Karl T Kelsey,
 and Carmen J Marsit. Reference-free deconvolution of DNA methylation data and
 mediation by cell composition effects. BMC Bioinformatics, 17(1):259, 2016.
+
 [10] Jeffrey T Leek and John D Storey. Capturing heterogeneity in gene expression studies by
 surrogate variable analysis. PLoS Genetics, 3(9):e161, 2007.
+
 [11] Eugene Andres Houseman, John Molitor, and Carmen J Marsit. Reference-free cell mixture
 adjustments in analysis of DNA methylation data. Bioinformatics, 30(10):1431-1439,
 2014.
+
 [12] Xiangyu Luo, Can Yang, and Yingying Wei. Detection of Cell-Type-Specific CpG Sites in Epigenome-Wide Association Studies.
