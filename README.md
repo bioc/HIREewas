@@ -1,5 +1,5 @@
 ## A Brief Summary of HIREewas
-HIRE is short for HIgh REsolution, as it can detect cell-type-specific CpG sites in epigenome wide association studies (EWAS), which is a function existing EWAS approaches cannot accomplish. HIREewas is the accompanied R package to implement the HIRE model.
+HIRE is short for HIgh REsolution, as it can detect cell-type-specific risk-CpG sites in epigenome wide association studies (EWAS), while existing EWAS approaches cannot accomplish the "cell-type-specific" function. HIREewas is the accompanied R package to implement the HIRE model.
 
 ## Introduction
 In epigenome-wide association studies (EWAS), as samples are measured at the bulk level rather than at the single-cell level, 
