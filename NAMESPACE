@@ -1,0 +1,7 @@
+export(HIRE)
+export(riskCpGpattern)
+import(quadprog)
+import(gplots)
+useDynLib(HIREewas)
+ importFrom("grDevices", "colorRampPalette")
+  importFrom("stats", "lm", "rgamma", "sd")
