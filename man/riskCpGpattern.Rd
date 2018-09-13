@@ -36,7 +36,7 @@ riskCpGpattern(pval_matr, main_title = "Detected association pattern", hc_row_in
 
 \examples{
 #a p-value matrix from the uniform distribution
-pvalue <- matrix(rnorm(600), 100, 6)
+pvalue <- matrix(runif(600), 100, 6)
 
 #Visualize this p-value matrix
 riskCpGpattern(pvalues, 
