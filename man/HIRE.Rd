@@ -1,6 +1,6 @@
 \name{HIRE}
 \alias{HIRE}
-%- Also NEED an '\alias' for EACH other topic documented here.
+
 \title{
 Detection of cell-type-specific risk-CpG sites in epigenome-wide association studies
 }
@@ -11,7 +11,7 @@ The HIRE function provides parameter estimates in the HIRE model and the p-value
 HIRE(Ometh, X, num_celltype, tol=10^(-5), num_iter=1000, alpha=0.01)
 }
 
-%- maybe also 'usage' for other objects documented here.
+
 \arguments{
   \item{Ometh}{
 	The observed methylation matrix, where one row corresponds to a CpG site and one column represents a sample.
@@ -50,11 +50,7 @@ HIRE(Ometh, X, num_celltype, tol=10^(-5), num_iter=1000, alpha=0.01)
 	Xiangyu Luo
 }
 
-%% ~Make other sections like Warning with \section{Warning }{....} ~
 
-%\seealso{
-%% ~~objects to See Also as \code{\link{help}}, ~~~
-%}
 \examples{
 ################################################################################################
 #Generate the EWAS data 
@@ -184,8 +180,7 @@ riskCpGpattern(ret_list$pvalues[1:100, K+c(2,1,3)],
 
 }
 
-% Add one or more standard keywords, see file 'KEYWORDS' in the
-% R documentation directory.
-\keyword{ HIRE }% use one of  RShowDoc("KEYWORDS")
-\keyword{ riskCpGpattern }% __ONLY ONE__ keyword per line
+
+\keyword{ HIRE }
+\keyword{ riskCpGpattern }
 
