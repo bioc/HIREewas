@@ -75,7 +75,7 @@ HIRE <- function(Ometh, X, num_celltype, tol = 10^(-5), num_iter=1000, alpha=0.0
 
 		Ometh_part <- Ometh[ind[1:num_cpg_for_init],] #select CpG sites with the most num_cpg_for_init variant methylation levels 
 
-		result <- CorDescent(Ometh_part, num_celltype=K, tol = 0.1, showIter = F)
+		result <- CorDescent(Ometh_part, num_celltype=K, tol = 0.1, showIter = FALSE)
 		P_initial <- result$P
 
 		mu_initial <- sapply(1:m, function(j){
