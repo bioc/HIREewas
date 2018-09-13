@@ -227,19 +227,5 @@ riskCpGpattern(ret_list$pvalues[1:100, K+c(2,1,3)],
 
 \noindent Here, for a good visualization, only the p-values for the first 100 CpG sites were demonstrated. \Robject{main\_title} is used to specify the title of the association figure.\Robject{hc\_row\_ind} is an argument indicating whether the rows should be hierarchically clustered.\\
 
-%\section{Model Selection}
-%\noindent In practice, the underlying cell type number might be unknown to us. In this case, we can resort to the pBIC criterion to select the cell type number by try multiple choices of the cell type number.\\
-
-%<<>>=
-%pBIC <- NULL
-%for(k in 2:4){
-%	ret_list <- HIRE(Ometh, X, num_celltype=K, tol=10^(-4), num_iter=1000, alpha=0.01)
-%	#only use the first 1000 CpG sites for a quick demonstration
-%	pBIC <- c(pBIC, ret_list$pBIC)
-%}
-%plot(2:4, pBIC, xlab = "cell type number", ylab = "pBIC", main = "pBIC plot", type="b")
-%@ 
-
-%\noindent As you can see, when the cell type number is three, the pBIC value attains the minimum, thus correctly recovering the underlying truth.\\ 
 \bibliography{user_guide}
 \end{document}
