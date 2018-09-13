@@ -59,7 +59,7 @@ n <- 180     #number of samples
 n1 <- 60    #number of controls
 n2 <- 120    #number of cases 
 
-m <- 10000   #number of CpG sites
+m <- 2000   #number of CpG sites
 K <- 3       #underlying cell type number
 	
 ###simulate methylation baseline profiles
@@ -146,7 +146,7 @@ Ometh[Ometh > 1] <- 1
 Ometh[Ometh < 0] <- 0
 @
 
-\noindent Here we simulated a methylation matrix \Robject{Ometh} with 10,000 CpG sites and 300 samples as well as a covariate matrix \Robject{X} with one binary covariate (case/control) in the first row and one continuous variable (age) in the second row. We can further look into the details.\\
+\noindent Here we simulated a methylation matrix \Robject{Ometh} with 2,000 CpG sites and 180 samples as well as a covariate matrix \Robject{X} with one binary covariate (case/control) in the first row and one continuous variable (age) in the second row. We can further look into the details.\\
 
 <<data-preparation2>>=
 #the class of the methylation matrix
@@ -200,20 +200,20 @@ head(ret_list$pvalues[ ,1:3])
 head(ret_list$pvalues[ ,4:6]) 
 @  
 
-\noindent \Robject{ret\_list\$P\_t} is the estimated cell proportion matrix with its rows denoting cell types and columns representing samples. We can also compare the estimates with the underlying truth (see the following code). Since the deconvolution technique is unsupervised, the label-switching problem exists. Therefore, we use (3,1,2) to index \Robject{ret\_list\$P\_t} instead of (1,2,3). \Robject{ret\_list\$mu\_t} is the estimated cell-type-specific methylation baselines in a matrix form, where CpG sites in rows and cell types in cloumn. \Robject{ret\_list\$beta\_t} is a three dimensional array where \Robject{ret\_list\$beta\_t[i,k,ell]} is the estimated phenotype ell effect on CpG site i in cell type k. The penalized BIC score can be obtained by \Robject{ret\_list\$pBIC}. \\
+\noindent \Robject{ret\_list\$P\_t} is the estimated cell proportion matrix with its rows denoting cell types and columns representing samples. We can also compare the estimates with the underlying truth (see the following code). Since the deconvolution technique is unsupervised, the label-switching problem exists. Therefore, we use (2,1,3) to index \Robject{ret\_list\$P\_t} instead of (1,2,3). \Robject{ret\_list\$mu\_t} is the estimated cell-type-specific methylation baselines in a matrix form, where CpG sites in rows and cell types in cloumn. \Robject{ret\_list\$beta\_t} is a three dimensional array where \Robject{ret\_list\$beta\_t[i,k,ell]} is the estimated phenotype ell effect on CpG site i in cell type k. The penalized BIC score can be obtained by \Robject{ret\_list\$pBIC}. \\
 
 \noindent The approximate p values are stored in the matrix \Robject{ret\_list\$pvalues}. Its dimension is m (the CpG site number) by Kq (the cell type number K times the phenotype number q). In the p-value matrix, one row is a CpG site. The first K columns correspond to the p-value matrix of the phenotype 1, the second K columns corresponds to the p-value matrix of the phenotype 2, and so forth.\\   
 
 <<>>=
 #estimated cell compositions vs the truth
 par(mfrow=c(1,3))
-plot(ret_list$P_t[3, ], P[1, ], xlim=c(0,1), ylim=c(0,1))
+plot(ret_list$P_t[2, ], P[1, ], xlim=c(0,1), ylim=c(0,1))
 abline(a=0, b=1, col="red")
 
 plot(ret_list$P_t[1, ], P[2, ], xlim=c(0,1), ylim=c(0,1))
 abline(a=0, b=1, col="red")
 
-plot(ret_list$P_t[2, ], P[3, ], xlim=c(0,1), ylim=c(0,1))
+plot(ret_list$P_t[3, ], P[3, ], xlim=c(0,1), ylim=c(0,1))
 abline(a=0, b=1, col="red")
 @  
 
@@ -221,7 +221,7 @@ abline(a=0, b=1, col="red")
 \noindent We can visualize the detected association in a cell-type-specifc way using \Rfunction{riskCpGpattern} as follows.
 
 <<>>=
-riskCpGpattern(ret_list$pvalues[1:100, K+c(3,1,2)], 
+riskCpGpattern(ret_list$pvalues[1:100, K+c(2,1,3)], 
 		main_title="Detected association pattern\n with age", hc_row_ind = FALSE)
 @
 
