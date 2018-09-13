@@ -8,23 +8,16 @@
 \description{
 \packageDescription{HIREewas}
 }
-%\details{
-%The DESCRIPTION file:
-%\packageDESCRIPTION{HIRE}
-%\packageIndices{HIRE}
-%}
+
 \author{
 \packageAuthor{HIREewas}
 
 Maintainer: \packageMaintainer{HIREewas}
 }
 \references{
-the HIRE manuscript
+Xiangyu Luo, Can Yang, Yingying Wei. Detection of cell-type-specific risk-CpG sites in epigenome wide association studies.
 }
 
-\keyword{ package }
-%\seealso{
-%}
 \examples{
 ################################################################################################
 #Generate the EWAS data 
@@ -45,7 +38,7 @@ n2 <- 120    #number of cases
 #################################################################################################
 # K=3
 #################################################################################################
-m <- 10000   #number of CpG sites
+m <- 2000   #number of CpG sites
 K <- 3       #underlying cell type number
 	
 #methylation profiles
@@ -143,13 +136,13 @@ ret_list <- HIRE(Ometh, X, num_celltype=K)
 
 #case vs control
 #Visualize the association pattern with the case/control status in the first 100 CpG sites
-riskCpGpattern(ret_list$pvalues[1:100, c(3,1,2)], 
+riskCpGpattern(ret_list$pvalues[1:100, c(2,1,3)], 
 		main_title="Detected association pattern\n with disease status", hc_row_ind = FALSE)
-#c(3,1,2) was used because of the label switching
+#c(2,1,3) was used because of the label switching
 
 #age
 #Visualize the association pattern with the age in the first 100 CpG sites
-riskCpGpattern(ret_list$pvalues[1:100, K+c(3,1,2)], 
+riskCpGpattern(ret_list$pvalues[1:100, K+c(2,1,3)], 
 		main_title="Detected association pattern\n with age", hc_row_ind = FALSE)
 
 }
