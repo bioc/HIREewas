@@ -45,8 +45,6 @@ BiocStyle::latex()
 #Generate the EWAS data 
 ###############################################################
 
-###set seed for reproducibility
-set.seed(05222018)
 
 ###define a function to draw samples from a Dirichlet distribution
 rDirichlet <- function(alpha_vec){
