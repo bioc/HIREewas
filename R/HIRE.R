@@ -52,7 +52,7 @@ HIRE <- function(Ometh, X, num_celltype, tol = 10^(-5), num_iter=1000, alpha=0.0
 			#calculate errors
 			err1 <- sum((MethMatr - U_matr_t %*% P_matr_t)^2)
 			if(showIter == TRUE){
-				cat("  ", err1, "\n")
+				message("  ", err1, "\n")
 			}
 		}
 	
@@ -116,12 +116,12 @@ HIRE <- function(Ometh, X, num_celltype, tol = 10^(-5), num_iter=1000, alpha=0.0
 	init <- Initialize(Ometh, K)
 	P_t <- init[[1]]
 	mu_t <- t(init[[2]])
-	cat("  Initialization Done.\n")
-	cat("  Implementing EM algorithm... \n")
+	message("  Initialization Done.\n")
+	message("  Implementing EM algorithm... \n")
 	ret_list <- EmEwasRcallC(Ometh, X, P_t, mu_t, beta_t, sig_sqTiss_t, sig_sqErr_t, tol, num_iter)
-	cat("  Done! \n")
+	message("  Done! \n")
 	
-	cat("  Calculating p-values...\n")
+	message("  Calculating p-values...\n")
 	tmp <- NULL
 	for(ell in seq_len(p)){
 		tmp <- cbind(tmp, X[ell, ]*t(ret_list$P_t))
@@ -134,7 +134,7 @@ HIRE <- function(Ometh, X, num_celltype, tol = 10^(-5), num_iter=1000, alpha=0.0
 					fit <- lm(y_vec~x_matr)
 					summary(fit)$coef[seq(2, (1+p*K)),4]
 				}, FUN.VALUE = rep(-1,p*K)))
-	cat("  Done!\n")
+	message("  Done!\n")
 	ret_list[[7]] <- pvalues
 	names(ret_list)[7] <- "pvalues"
 	names(ret_list)[6] <- "pBIC"
