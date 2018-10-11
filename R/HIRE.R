@@ -25,7 +25,7 @@ HIRE <- function(Ometh, X, num_celltype, tol = 10^(-5), num_iter=1000, alpha=0.0
 			stop("The CpG site number must be larger than the sample number!")
 		}
 		#initialize P_matr
-		P_matr_t <- vapply(1:n, function(i){ rDirichlet(rep(2,K)) }, FUN.VALUE=rep(-1,K))
+		P_matr_t <- vapply(seq_len(n), function(i){ rDirichlet(rep(2,K)) }, FUN.VALUE=rep(-1,K))
 		while(abs(err1 - err0) >= tol){
 			err0 <- err1
 			#update U_matr
@@ -78,7 +78,7 @@ HIRE <- function(Ometh, X, num_celltype, tol = 10^(-5), num_iter=1000, alpha=0.0
 		result <- CorDescent(Ometh_part, num_celltype=K, tol = 0.1, showIter = FALSE)
 		P_initial <- result$P
 
-		mu_initial <- vapply(1:m, function(j){
+		mu_initial <- vapply(seq_len(m), function(j){
 				if(K > 2){
 					fit <- lm(Ometh[j,]~as.matrix(t(P_initial[-1, ])))
 				}else{
@@ -123,13 +123,13 @@ HIRE <- function(Ometh, X, num_celltype, tol = 10^(-5), num_iter=1000, alpha=0.0
 	
 	cat("  Calculating p-values...\n")
 	tmp <- NULL
-	for(ell in 1:p){
+	for(ell in seq_len(p)){
 		tmp <- cbind(tmp, X[ell, ]*t(ret_list$P_t))
 	}
 	x_matr <- cbind( tmp, t(ret_list$P_t)[, 2:K])
 	x_matr <- as.matrix(x_matr)
 
-	pvalues <- t(vapply(1:m, function(j){
+	pvalues <- t(vapply(seq_len(m), function(j){
 					y_vec <- Ometh[j,]
 					fit <- lm(y_vec~x_matr)
 					summary(fit)$coef[2:(1+p*K),4]
