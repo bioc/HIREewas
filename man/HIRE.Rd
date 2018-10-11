@@ -139,7 +139,7 @@ P <- vapply(seq_len(n), function(i){
 				}else{
 					rDirichlet(c(4,4, 5+X[2,i]/10))
 				}	
-			}, FUN.VALUE = rep(-1, 4))
+			}, FUN.VALUE = rep(-1, 3))
 
 #generate the observed methylation profiles 
 Ometh <- NULL
