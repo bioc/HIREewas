@@ -14,22 +14,22 @@ HIRE(Ometh, X, num_celltype, tol=10^(-5), num_iter=1000, alpha=0.01)
 
 \arguments{
   \item{Ometh}{
-	The observed methylation matrix, where one row corresponds to a CpG site and one column represents a sample.
+	The observed methylation matrix (with continuous values between 0 and 1), where one row corresponds to a CpG site and one column represents a sample.
 }
   \item{X}{
 	The observed phenotypes, where one row corresponds to a phenotype and one column represents a sample. 
 }
   \item{num_celltype}{
-    The cell type number that needs to be specified by the users.
+    The cell type number (an integer) that needs to be specified by the users.
 }
   \item{tol}{
 	The relative tolerance used to determine when the HIRE stops. When the ratio of the log observed-data likelihood difference to the log observed-data likelihood at last iteration in the absolute value is smaller than \code{tol}, then the HIRE functions stops. The default is 10^(-5).
 	}
 \item{num_iter}{
-	The maximum number of iterations. The default is 1000. 
+	The maximum number of iterations (an integer). The default is 1000. 
   }
   \item{alpha}{
-	One threshold parameter in the Bonferroni correction to claim a significant cell-type-specific CpG site. The default is 0.01. 
+	One threshold parameter in the Bonferroni correction to claim a significant cell-type-specific CpG site (a float point between 0 and 1, usually set less than 0.05). The default is 0.01. 
   }	
 }
 \details{
@@ -134,21 +134,21 @@ beta[base+m_common+m_seperate+(1:m_seperate),K,2] <- signs *
 					runif(m_seperate, min=min_signal, max=max_signal)
 
 #generate the cellular compositions 
-P <- sapply(1:n, function(i){
+P <- vapply(seq_len(n), function(i){
 				if(X[1,i]==0){ #if control
 					rDirichlet(c(4,4, 2+X[2,i]/10))
 				}else{
 					rDirichlet(c(4,4, 5+X[2,i]/10))
 				}	
-			})
+			}, FUN.VALUE = rep(-1, 4))
 
 #generate the observed methylation profiles 
 Ometh <- NULL
-for(i in 1:n){
-	utmp <- t(sapply(1:m, function(j){
+for(i in seq_len(n)){
+	utmp <- t(vapply(1:m, function(j){
 					tmp1 <- colSums(X[ ,i] * t(beta[j, , ]))
 					rnorm(K,mean=mu[j, ]+tmp1,sd=0.01)
-				}))
+				}, FUN.VALUE = rep(-1, K)))
 	tmp2 <- colSums(P[ ,i] * t(utmp))
 	Ometh <- cbind(Ometh, tmp2 + rnorm(m, sd = 0.01))
 }
@@ -169,13 +169,13 @@ ret_list <- HIRE(Ometh, X, num_celltype=K)
 
 #case vs control
 #Visualize the association pattern with the case/control status in the first 100 CpG sites
-riskCpGpattern(ret_list$pvalues[1:100, c(2,1,3)], 
+riskCpGpattern(ret_list$pvalues[seq_len(100), c(2,1,3)], 
 		main_title="Detected association pattern\n with disease status", hc_row_ind = FALSE)
 #c(2,1,3) was used because of the label switching
 
 #age
 #Visualize the association pattern with the age in the first 100 CpG sites
-riskCpGpattern(ret_list$pvalues[1:100, K+c(2,1,3)], 
+riskCpGpattern(ret_list$pvalues[seq_len(100), K+c(2,1,3)], 
 		main_title="Detected association pattern\n with age", hc_row_ind = FALSE)
 
 }
