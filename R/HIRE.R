@@ -164,14 +164,14 @@ riskCpGpattern <- function(pval_matr, main_title="Detected association pattern",
 	 		key = TRUE, key.xlab = "-log10(p-value)",
 	 		Colv=FALSE,Rowv=FALSE, density.info = "none", trace = "none", dendrogram="none", 
 	 		ylab = paste0(m, " CpG sites"), xlab = "Cell types", margins = c(5,5),  
-			main = main_title,labCol=paste0("Cell type ", 1:K),
+			main = main_title,labCol=paste0("Cell type ", seq_len(K)),
 			labRow=FALSE, cexRow=0.9, srtCol=0, cexCol=1, adjCol=c(NA,1), colsep=seq_len(K))
 	}else{
 		heatmap.2(-log10(pval_matr), col = colors, scale = "none",
 	 		key = TRUE, key.xlab = "-log10(p-value)",
 	 		Colv=FALSE,Rowv=TRUE, density.info = "none", trace = "none", dendrogram="row", 
 	 		ylab = paste0(m, " CpG sites"), xlab = "Cell types", margins = c(5,5),  
-			main = main_title,labCol=paste0("Cell type ", 1:K),
+			main = main_title,labCol=paste0("Cell type ", seq_len(K)),
 			labRow=FALSE, cexRow=0.9, srtCol=0, cexCol=1, adjCol=c(NA,1), colsep=seq_len(K))		
 	}
 }
