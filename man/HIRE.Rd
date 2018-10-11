@@ -83,7 +83,6 @@ methy1 <- rbeta(m,3,6)
 #cell type 2 
 methy2 <- methy1 + rnorm(m, sd=0.01)
 ind <- sample(seq_len(m), m/5) 
-#ind <- 1:m
 methy2[ind] <- rbeta(length(ind),3,6)
 
 #cell type 3
