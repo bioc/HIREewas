@@ -32,7 +32,7 @@ HIRE <- function(Ometh, X, num_celltype, tol = 10^(-5), num_iter=1000, alpha=0.0
 			Dmat <- 2*P_matr_t%*%t(P_matr_t)
 			Amat <- cbind(diag(rep(1,K)), diag(rep(-1,K)))
 			bvec <- c(rep(0,K), rep(-1,K))
-			U_matr_t <- t( vapply(1:m, function(j){
+			U_matr_t <- t( vapply(seq_len(m), function(j){
 							dvec <- 2*P_matr_t %*% as.numeric(MethMatr[j,])
 
 							solu <- solve.QP(Dmat, dvec, Amat, bvec)
@@ -43,7 +43,7 @@ HIRE <- function(Ometh, X, num_celltype, tol = 10^(-5), num_iter=1000, alpha=0.0
 			Dmat <- 2*t(U_matr_t) %*% U_matr_t
 			Amat <- cbind(matrix(1, K, K), diag(rep(1,K)))
 			bvec <- c(rep(1, K), rep(0, K))
-			P_matr_t <- vapply(1:n, function(i){
+			P_matr_t <- vapply(seq_len(n), function(i){
 						dvec <- 2 * t(U_matr_t) %*% as.numeric(MethMatr[ ,i])
 						solu <- solve.QP(Dmat, dvec, Amat, bvec, meq = K)
 						solu$solution 
@@ -73,7 +73,7 @@ HIRE <- function(Ometh, X, num_celltype, tol = 10^(-5), num_iter=1000, alpha=0.0
 			}
 		}
 
-		Ometh_part <- Ometh[ind[1:num_cpg_for_init],] #select CpG sites with the most num_cpg_for_init variant methylation levels 
+		Ometh_part <- Ometh[ind[seq_len(num_cpg_for_init)],] #select CpG sites with the most num_cpg_for_init variant methylation levels 
 
 		result <- CorDescent(Ometh_part, num_celltype=K, tol = 0.1, showIter = FALSE)
 		P_initial <- result$P
