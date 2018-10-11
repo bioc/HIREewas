@@ -25,29 +25,29 @@ HIRE <- function(Ometh, X, num_celltype, tol = 10^(-5), num_iter=1000, alpha=0.0
 			stop("The CpG site number must be larger than the sample number!")
 		}
 		#initialize P_matr
-		P_matr_t <- sapply(1:n, function(i){ rDirichlet(rep(2,K)) })
+		P_matr_t <- vapply(1:n, function(i){ rDirichlet(rep(2,K)) }, FUN.VALUE=rep(-1,K))
 		while(abs(err1 - err0) >= tol){
 			err0 <- err1
 			#update U_matr
 			Dmat <- 2*P_matr_t%*%t(P_matr_t)
 			Amat <- cbind(diag(rep(1,K)), diag(rep(-1,K)))
 			bvec <- c(rep(0,K), rep(-1,K))
-			U_matr_t <- t( sapply(1:m, function(j){
+			U_matr_t <- t( vapply(1:m, function(j){
 							dvec <- 2*P_matr_t %*% as.numeric(MethMatr[j,])
 
 							solu <- solve.QP(Dmat, dvec, Amat, bvec)
 							solu$solution
-					}) )
+					}, FUN.VALUE=rep(-1,K)) )
 		
 			#update P_matr
 			Dmat <- 2*t(U_matr_t) %*% U_matr_t
 			Amat <- cbind(matrix(1, K, K), diag(rep(1,K)))
 			bvec <- c(rep(1, K), rep(0, K))
-			P_matr_t <- sapply(1:n, function(i){
+			P_matr_t <- vapply(1:n, function(i){
 						dvec <- 2 * t(U_matr_t) %*% as.numeric(MethMatr[ ,i])
 						solu <- solve.QP(Dmat, dvec, Amat, bvec, meq = K)
 						solu$solution 
-					})
+					}, FUN.VALUE=rep(-1,K))
 					
 			#calculate errors
 			err1 <- sum((MethMatr - U_matr_t %*% P_matr_t)^2)
@@ -78,7 +78,7 @@ HIRE <- function(Ometh, X, num_celltype, tol = 10^(-5), num_iter=1000, alpha=0.0
 		result <- CorDescent(Ometh_part, num_celltype=K, tol = 0.1, showIter = FALSE)
 		P_initial <- result$P
 
-		mu_initial <- sapply(1:m, function(j){
+		mu_initial <- vapply(1:m, function(j){
 				if(K > 2){
 					fit <- lm(Ometh[j,]~as.matrix(t(P_initial[-1, ])))
 				}else{
@@ -87,7 +87,7 @@ HIRE <- function(Ometh, X, num_celltype, tol = 10^(-5), num_iter=1000, alpha=0.0
 				tmp <- as.numeric(summary(fit)$coeff[ ,1])
 				tmp[-1] <- tmp[1] + tmp[-1]
 				tmp
-			})
+			}, FUN.VALUE = rep(-1,K) )
 		return(list(P_initial, mu_initial))
 	}
 
@@ -129,11 +129,11 @@ HIRE <- function(Ometh, X, num_celltype, tol = 10^(-5), num_iter=1000, alpha=0.0
 	x_matr <- cbind( tmp, t(ret_list$P_t)[, 2:K])
 	x_matr <- as.matrix(x_matr)
 
-	pvalues <- t(sapply(1:m, function(j){
+	pvalues <- t(vapply(1:m, function(j){
 					y_vec <- Ometh[j,]
 					fit <- lm(y_vec~x_matr)
 					summary(fit)$coef[2:(1+p*K),4]
-				}))
+				}, FUN.VALUE = rep(-1,p*K)))
 	cat("  Done!\n")
 	ret_list[[7]] <- pvalues
 	names(ret_list)[7] <- "pvalues"
