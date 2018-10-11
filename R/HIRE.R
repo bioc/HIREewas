@@ -126,13 +126,13 @@ HIRE <- function(Ometh, X, num_celltype, tol = 10^(-5), num_iter=1000, alpha=0.0
 	for(ell in seq_len(p)){
 		tmp <- cbind(tmp, X[ell, ]*t(ret_list$P_t))
 	}
-	x_matr <- cbind( tmp, t(ret_list$P_t)[, 2:K])
+	x_matr <- cbind( tmp, t(ret_list$P_t)[, seq(2,K)])
 	x_matr <- as.matrix(x_matr)
 
 	pvalues <- t(vapply(seq_len(m), function(j){
 					y_vec <- Ometh[j,]
 					fit <- lm(y_vec~x_matr)
-					summary(fit)$coef[2:(1+p*K),4]
+					summary(fit)$coef[seq(2, (1+p*K)),4]
 				}, FUN.VALUE = rep(-1,p*K)))
 	cat("  Done!\n")
 	ret_list[[7]] <- pvalues
@@ -165,14 +165,14 @@ riskCpGpattern <- function(pval_matr, main_title="Detected association pattern",
 	 		Colv=FALSE,Rowv=FALSE, density.info = "none", trace = "none", dendrogram="none", 
 	 		ylab = paste0(m, " CpG sites"), xlab = "Cell types", margins = c(5,5),  
 			main = main_title,labCol=paste0("Cell type ", 1:K),
-			labRow=FALSE, cexRow=0.9, srtCol=0, cexCol=1, adjCol=c(NA,1), colsep=1:K)
+			labRow=FALSE, cexRow=0.9, srtCol=0, cexCol=1, adjCol=c(NA,1), colsep=seq_len(K))
 	}else{
 		heatmap.2(-log10(pval_matr), col = colors, scale = "none",
 	 		key = TRUE, key.xlab = "-log10(p-value)",
 	 		Colv=FALSE,Rowv=TRUE, density.info = "none", trace = "none", dendrogram="row", 
 	 		ylab = paste0(m, " CpG sites"), xlab = "Cell types", margins = c(5,5),  
 			main = main_title,labCol=paste0("Cell type ", 1:K),
-			labRow=FALSE, cexRow=0.9, srtCol=0, cexCol=1, adjCol=c(NA,1), colsep=1:K)		
+			labRow=FALSE, cexRow=0.9, srtCol=0, cexCol=1, adjCol=c(NA,1), colsep=seq_len(K))		
 	}
 }
 
