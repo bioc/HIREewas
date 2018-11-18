@@ -9,7 +9,7 @@ BiocStyle::latex()
 
 \geometry{verbose,tmargin=2.5cm,bmargin=2.5cm,lmargin=2.5cm,rmargin=2.5cm}
 
-\title{HIREewas: Detection Cell-Type-Specific Risk-CpG Sites in EWAS\\ User's Guide}
+\title{HIREewas: Detection of Cell-Type-Specific Risk-CpG Sites in EWAS\\ User's Guide}
 \author{Xiangyu Luo\thanks{\email{xyluo1991@gmail.com} The Chinese University of Hong Kong},
             Can Yang \thanks{The Hong Kong University of Science and Technology}, and 
             Yingying Wei \thanks{The Chinese University of Hong Kong}
@@ -45,7 +45,7 @@ BiocStyle::latex()
 #Generate the EWAS data 
 ###############################################################
 
-
+set.seed(123)
 ###define a function to draw samples from a Dirichlet distribution
 rDirichlet <- function(alpha_vec){
 	num <- length(alpha_vec)
