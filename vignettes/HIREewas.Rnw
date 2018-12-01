@@ -36,7 +36,7 @@ BiocStyle::latex()
 
 
 \section{Data Preparation}
-\noindent We first introduce the input data format. The input data consists of the methylation values and the covariates. The methylation values should be organized into a matrix \Robject{Ometh}, where each row represents a CpG site and each column corresponds to a sample. In other words, the $(i,j)$ element of \Robject{Ometh} is the methylation value for sample $j$ in CpG site $j$. The covariate data are also arranged in a matrix \Robject{X}. Each row of \Robject{Ometh} denotes one covariate, so the row number is equal to the number of covariate types. Columns of \Robject{X} represent samples. Therefore, the $(\ell, j)$ element of \Robject{X} is the covariate $\ell$ information of sample $j$. \\
+\noindent We first introduce the input data format. The input data consists of the methylation values and the covariates. The methylation values should be organized into a matrix \Robject{Ometh}, where each row represents a CpG site and each column corresponds to a sample. In other words, the $(i,j)$ element of \Robject{Ometh} is the methylation value for sample $j$ in CpG site $j$. The covariate data are also arranged in a matrix \Robject{X}. Each row of \Robject{X} denotes one covariate, so the row number is equal to the number of covariate types. Columns of \Robject{X} represent samples. Therefore, the $(\ell, j)$ element of \Robject{X} is the covariate $\ell$ information of sample $j$. \\
 
 \noindent For demonstration, we then generate a dataset following the simulation steps in \cite{hire}.\\
 
