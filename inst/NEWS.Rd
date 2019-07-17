@@ -7,3 +7,9 @@
        \item Corrected the title of vignettes
     }
 }
+
+\section{Changes in version 1.3.1 (2019-7-17)}{
+    \itemize{
+	\item Added the citation file.
+    }
+}
