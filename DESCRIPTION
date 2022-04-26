@@ -1,7 +1,7 @@
 Package: HIREewas
 Type: Package
 Title: Detection of cell-type-specific risk-CpG sites in epigenome-wide association studies 
-Version: 1.13.0
+Version: 1.14.0
 Date: 2018-06-11
 Author: Xiangyu Luo  <xyluo1991@gmail.com>, Can Yang <macyang@ust.hk>, Yingying Wei <yweicuhk@gmail.com>  
 Maintainer: Xiangyu Luo <xyluo1991@gmail.com>
